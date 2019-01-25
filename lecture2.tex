@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\phii}{\varphi}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\title{Lecture 2}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section{Saddle Points and Critical Points}
+  \subsection{Remark}
+    Local max/min at $y$ and differentiability at $y\Rightarrow \nabla f(y)=\vec{0}$
+  \subsection{Example 1}
+    $f:\BR^2\rightarrow\BR$\\
+    $(x,y)\mapsto f(x,y)=xy$\\
+    We have $\nabla f(x,y) = (\frac{df}{dx},\frac{df}{dy})=(y,x)$\\
+    Critical points of $f:\nabla f(x,y) = (y,x) = \vec{0} = (0,0)$\\
+    Only one critical point at the origin $(0,0)$, and $\vec{0}$ is not a local max or min\\
+    \begin{proof}
+      Pick any $r>0$, look at $B(\vec{0}, r)$\\
+      Here $f(\vec{0})=0$, pick $x_1=(\frac{r}{2}, \frac{r}{2})$, $x_2=(\frac{r}{2}, \frac{-r}{2})$\\
+      Then $x_1$, $x_2\in B(\vec{0}, r)$, $f(x_1)=\frac{r^2}{4}$, $f(x_2)=\frac{-r^2}{4}$\\
+      $x_2<\vec{0}<x_1$ thus it is not a local min or max
+    \end{proof}
+  \subsection{Saddle Point}
+    $y$ is a saddle point of $f$ if it is a critical point but not a local max or local min
+  \subsection{Clear characterization}
+    $y$ is a saddle point if $\nabla f(y)=\vec{0}$, and for any $r>0$\\
+    we can find $x_1$, $x_2\in B(y,r)$ and $f(x_1)>f(y)>f(x_2)$
+\section{Finding global min/max}
+  \subsection{Example 2}
+    $g: [-1,3]\times[-1,3]\rightarrow \BR$\\
+    $(x,y)\mapsto g(x,y)=(x-1)y$\\
+    Finding the global max of $g$, find all critical points inside\\
+    \[\nabla g(x,y)=(g_x,g_y)=(y, x-1)\]\\
+    \[\nabla g(x,y)=\vec{0}\Rightarrow (y,x-1)=(0,0) \Rightarrow(x,y)=(1,0)\]\\
+    On the edges\\
+    \[x=-1, -1\leq y\leq 3,\]\\
+    \[g(x,y)=-2y\]\\
+    min value of $g=-6$, max value of $g=2$\\
+    ... for $x=3, -1\leq y \leq 3$, etc.\\
+    \[g(1,0) = 0\]\\
+    Conclusion: global max of $g=6$ at $(x,y)=(3,3)$
+\section{Characterization of critical points}
+  \subsection{Single variable calculus}
+    $f(x)=x^2$, local min at $x=0$, $f\doubleprime(y)\geq 0$\\
+    $f(x)=-x^2$, local max at $x=0$, $f\doubleprime(y)\leq 0$\\
+    $f(x)=x^3$, neither at $x=0$, $f\doubleprime(y)=0$\\
+  \subsection{Analog of critical points}
+    Idea: use Taylor expansion around $y$\\
+    In single variable:\\
+    $f:\BR\rightarrow\BR$ is $C^2$(twice differentiable)\\
+    $f(y+h)=f(y)+f^\prime(y)h+\frac{1}{2}f\doubleprime(y)h^2+\omega(h)|h|^2$ where $\lim\limits_{h\to0}\omega(h)=0$\\
+    If $f^\prime(y)=0$, then $f(y+h)=f(y)+\frac{1}{2}f\doubleprime(y)h^2+\omega(h)|h|^2$\\
+    If $f\doubleprime(y)>0\rightarrow y$ is a local min\\
+    If $f\doubleprime(y)<0\rightarrow y$ is a local max\\
+    If $f\doubleprime(y)=0\rightarrow$ inconclusive
+  \subsection{In $n$ dimensions}
+    This is the same for $f:B(y,r)\rightarrow\BR$ where $B(y,r)\subset\BR^n$\\
+    Fix a direction $e\in\BR^n, |e|=1$\\
+    Define $\phii:(-r,r)\rightarrow\BR$\\
+    \indent\indent$t\mapsto\phii(t)=f(y+te)$\\
+    By Taylor expansion,\\
+    \[\phii(t)=\phii(0)+\phii^\prime(0)t+\frac{1}{2}\phii\doubleprime(0)t^2+\omega(t)t^2\]\\
+    \[\phii(t)=f^\prime(y+te,e)=\nabla f(y+te)e\]\\
+    \[\phii\doubleprime(t)=f\doubleprime(y+te,e,e)=eH(y+te)e^T\]\\
+    here $H(y+te)$ is the Hessian of $f$ at $y+te$\\
+    \[=\begin{pmatrix}
+      \frac{d^2f}{dx_{1}^{2}} & \dots & \frac{d^2f}{dx_ndx_1} \\
+      \vdots & & \vdots \\
+      \frac{d^2f}{dx_1dx_n} & \dots & \frac{d^2f}{dx_{n}^{2}}
+    \end{pmatrix}
+    \]
+    \[\phii^\prime(t)=\sum\limits_{i=1}^{n}f_{x_i}(x+te)e_i\]\\
+    \[\phii\doubleprime(t)=\sum\limits_{i=1, j=1}^{n}f_{x_ix_j}(x+te)e_ie_j\]
+\end{document}

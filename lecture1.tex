@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand{\BR}{\mathbb R}
+\title{Lecture 1}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+
+\section{Minimums, Maximums, Saddle Points}
+\subsection{Example}
+$U\subset\BR^n$ or $U=\BR$, $U$ open
+\newline
+$f: U\mapsto\BR$
+\newline
+$f:\BR^2\mapsto\BR$
+\newline
+$(x,y)\in\BR^2\mapsto f(x,y)=x^2-y^2$
+\newline
+No global max
+\newline
+$f(x,y)\rightarrow\infty$ for y fixed, $x\rightarrow\infty$
+\newline
+$(0,0)$ min of $x\mapsto f(x,0)$ and max of $y\mapsto f(0,y)$
+
+\subsection{Global Max}
+$y\in U$ is global max if $f(y)\geq f(x)\forall x\in U$
+\subsection{Global Min}
+ $z\in U$ is a global min if $f(z) \leq f(x) \forall x\in U$
+ \subsection{Local Min}
+ $y\in U$ is a local max of $f$ if there is $r>0$ such that $B(y,r)\subset U$ and \newline$f(y)\leq f(x)\forall x\in B(y, r)$
+ \subsection{Critical Point}
+ $y\in U$ is a critical point of f if there is $r>0$ such that $B(y, r)\subset U$, f is differentiable in $B(y, r)$, and $\nabla f(y) = \vec{O}$
+ \subsection{Gradient}
+ $\nabla f(y) = (\frac{df}{dx_1}(y), \frac{df}{dx_2}(y),...\frac{df}{dx_n}(y))$
+ \newline\indent\indent$= (f_{x_1}(y), f_{x_2}(y),...f_{x_n}(y))$
+ \newline\indent\indent$= (f^\prime(y, e_1), f^\prime(y, e_2),...f^\prime(y, e_n))$
+ \subsection{Lemma}
+ If $y$ is a local minimum or maximum of $f$ and $f$ is differentiable in $B(y, r)$, then $\nabla f(y) = \vec{O}$
+ \subsection{Proof}
+ For $e_1, s\in (-r, r)$
+ 
+ $s\mapsto P(s) = f(y +se_1)$
+ 
+ then $P$ has a maximum at $s = 0$
+
+ so $P^{'}(0) = 0$
+
+ $P^{'}(s) = f^\prime (y+se_1, e_1)$
+
+\indent\indent\indent$=\frac{df}{dx_1}(y+se_1)$
+
+$P^\prime (0) = 0 = \frac{df}{dx_1}(y)$
+
+similarly, $\frac{df}{dx_k}(y)=0$
+
+$\Rightarrow\nabla f(y)=\vec{O}$
+ \end{document}
