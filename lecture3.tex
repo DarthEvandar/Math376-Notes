@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\usepackage{hyperref}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+
+\newcommand{\BR}{\mathbb R}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\newenvironment{statement}[1]{\smallskip\noindent\color[rgb]{0.50,0.00,1.00} {\bf #1.}}{}
+\title{Lecture 3}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section{Characterization of Critical Points}
+\subsection{Critical Points in $n$ dimensions}
+\[ \text{Recall} \]
+\[ \phii(t) = f(y+te) \]
+\[ \phii^\prime(t)=f^\prime(y+te,e)=\nabla f(y+te)e \]
+\begin{align*}
+  \phii\doubleprime(t) & = f\doubleprime(y+te,e,e) \\
+   & =\frac{d}{dt}(\sum_{i=1}^{n}f_{x_i}(y+te)e_i) \\
+   & = \sum_{i,j=1}^{n}f_{x_ix_j}(y+te)e_ie_j \\
+   & = eH(y+te)e^T \\
+   & =
+   \begin{pmatrix}
+    e_1 \\
+    \vdots \\
+    e_n \\
+  \end{pmatrix}
+  \begin{pmatrix}
+   f_{x_1x_1} & \dots & f_{x_1x_n} \\
+   \vdots & & \vdots \\
+   f_{x_nx_1} & \dots & f_{x_nx_n} \\
+  \end{pmatrix}
+\end{align*}
+\subsection{Hessian}
+The Hessian of $f$ at $x$ is denoted by \\
+\[
+  H(x) = \begin{pmatrix}
+  f_{x_1x_1}(x) & \dots & f_{x_1x_n}(x) \\
+  \vdots & & \vdots \\
+  f_{x_nx_1}(x) & \dots & f_{x_nx_n}(x)
+  \end{pmatrix}
+\]
+$H(x)$ is a $n\times n$ matrix. Since we assume that \\
+$f_{x_ix_j}(x)$ is continuous in $B(y,r)$, we have \\
+$f_{x_ix_j}(x)=f_{x_jx_i}(x)\forall x,i,j$ \\
+$\Rightarrow H(x)$ is a real, symmetric matrix \\
+Key Point: This matrix is diagonalizable \\
+\subsection{Theorem 1: Taylor expansion of $f$}
+Assume f as previous \\
+Then for any $h\in\BR^n$ with $|h|<r$ \\
+\[ f(y+h) = f(y) + \nabla f(y)h + \frac{1}{2}h^TH(y)h+\omega(h)|h|^2 \]
+\[ \text{where }\lim_{h\rightarrow0}\omega(h)=0 \]
+\subsection{Characterize Critical points}
+Assume $f$ has a critical point at $y$, that is $\nabla f(y) = \vec{0}$ \\
+$\Rightarrow$ then for $|h|<r$ \\
+\[ f(y+h) = f(y) + \frac{1}{2}h^TH(y)h+\omega(h)|h|^2 \]
+\begin{align*}
+  \text{Define } Q(h) & = h^TH(y)h \\
+  & = \sum_{i,j=1}^{n}f_{x_ix_j}(y)h_ih_j
+\end{align*}
+(If $n=1$, $Q(h)=f\doubleprime(y)h^2$)
+\subsection{Theorem 2: Characterization of critical points 1}
+\circled{1} If $Q(h)>0$ for $h\neq 0$, then $f$ has a local min at $y$ \\
+\circled{2} If $Q(h)<0$ for $h\neq 0$, then $f$ has a local max at $y$ \\
+\circled{3} If we can find $h_1,h_2\neq 0$ such that $Q(h_1)>0>Q(h_2)$, then y is a saddle point
+\subsection{Theorem 3: Characterization of critical points 2}
+\circled{1}$\iff$ all eigenvalues of $H(y)$ are positive \\
+\circled{2}$\iff$ all eigenvalues of $H(y)$ are negative \\
+\circled{3}$\iff H(y)$ has at least one positive and negative eigenvalue \\
+If some eigenvalues are 0, it's typically inconclusive
+\subsection{Examples}
+\begin{statement}{1}
+
+\end{statement}
+\[ f: \BR^2 \rightarrow\BR \]
+\[ (x,y)\mapsto f(x,y)=x^2+2x+y^2-4y \]
+\[ \text{Question: Characterize all critical points of }f \]
+\[ \text{Solution: Find all critical points by solving} \]
+\[ \nabla f(x,y) = \vec{0} = (0,0) \]
+\[ (2x+2, 2y-4) = (0,0)\Rightarrow(x,y)=(-1,2) \]
+\[ H(-1,2) =
+\begin{pmatrix}
+  f_{xx} & f_{xy} \\
+  f_{yx} & f_{yy}
+\end{pmatrix}
+= \begin{pmatrix}
+  2 & 0 \\
+  0 & 2
+\end{pmatrix}
+\]
+\[\Rightarrow\text{ all eigenvalues positive}\Rightarrow (-1,2)\text{ is a local min} \]
+\\
+\\
+\\
+\\
+\\
+\\
+\begin{statement}{2}
+
+\end{statement}
+\[ g: \BR^2\rightarrow\BR \]
+\[ (x,y)\mapsto g(x,y)=xy \]
+\[ \nabla g(x,y)=(y,x)=\vec{0} \]
+\[ (y,x) = (0,0)\Rightarrow\text{ one critical point at }(0,0) \]
+\[
+H(0,0) =
+\begin{pmatrix}
+  f_{xx} & f_{xy} \\
+  f_{yx} & f_{yy}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  0 & 1 \\
+  1 & 0
+\end{pmatrix}
+\]
+\begin{align*}
+  \text{Eigenvalues} & = \text{det} (\lambda I-\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}) \\
+  & = \text{det}\begin{pmatrix} \lambda & -1 \\ -1 & \lambda \end{pmatrix} \\
+  & = \lambda^2 - 1 = 0 \\
+  & = \lambda^2 = 1 \\
+  & = \lambda = 1,-1 \\
+\end{align*}
+\[ \Rightarrow \text{One positive, one negative eigenvalue}\Rightarrow(0,0)\text{ is a saddle point} \]
+\end{document}

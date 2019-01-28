@@ -3,10 +3,14 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{tikz}
 \usepackage{hyperref}
     \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 \newcommand{\BR}{\mathbb R}
 \newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
 \title{Lecture x}
 \begin{document}
 \maketitle
