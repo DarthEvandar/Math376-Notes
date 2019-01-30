@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{hyperref}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 4}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Characterization of Critical Points 2}
+\subsection*{Recall}
+Let $A$ be a $n\times n$ real, symmetric matrix, and
+$A=\begin{psmallmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & & \vdots \\
+a_{n1} & \dots & a_{nn}
+\end{psmallmatrix}$ \\
+For $h\in\BR^n$, denote by \\
+\[ Q(h) = h^TAh=\sum_{i,j=1}^{n}a_{ij}h_ih_j \]
+\subsection{Lemma}
+\fbox{$Q(H)>0$ for all $h\neq\vec{0}\iff$ all eigenvalues of $A$ are positive}
+\begin{proof}
+  Since $A$ is a real, symmetric matrix, we have that $A$ is diagonalizable, \\
+  and we can write \\
+  \begin{equation*}
+    \begin{cases}
+      A = CDC^T \\
+      D \text{ is a diagonalizable matrix, }D=\text{diag}(\lambda_1,\dots,\lambda_n)=\begin{pmatrix*}\lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_n \end{pmatrix*}\\
+      CC^T = I\text{, that is, }C^T=C^{-1}
+    \end{cases}
+  \end{equation*}
+Then, eigenvalues of A are $\lambda_1,\lambda_2,\dots,\lambda_n$ \\
+we note then that:
+\[ Q(h) = h^TAh = h^TCDC^Th=(h^TC)D(C^Th) \]
+Set $x=C^Th\in\BR^n\Rightarrow x^T=(C^Th)^T=h^TC$. Then \\
+\[ Q(h) = x^TDx=(x_1,\dots,x_n)\begin{pmatrix*}
+  \lambda_1 & & 0 \\
+  & \ddots & \\
+  0 & & \lambda_n
+\end{pmatrix*}
+\begin{pmatrix*}
+  x_1 \\
+  \vdots \\
+  x_n
+\end{pmatrix*}
+=\fbox{$\sum\limits_{i=1}^{n}\lambda_ix_i^2$}\]
+The last identity is very important as it confirms what we need \\
+\begin{itemize}
+  \item Firstly, if $\lambda_1,\dots,\lambda_n>0$, then for $h\neq\vec{0},$ $x=C^Th\neq\vec{0}$, and so\\$Q(h)=\sum\limits_{i=1}^{n}\lambda_ix_i^2>0$
+  \item Secondly, in order for $Q(h)>0$ for all $h\neq\vec{0}$, we need\\$\sum\limits_{i=1}^{n}\lambda_ix_i^2>0$ for all $x\neq\vec{0}$.
+\end{itemize}
+Clearly we yield that $\lambda_1,\dots,\lambda_n>0$
+\end{proof}
+\subsection{Second derivative test for critical points of functions of two variables}
+\begin{equation*}
+  \begin{cases}
+    \text{Let }B(y,r)\subset\BR^2\text{, and }f:B(y,r)\rightarrow\BR \\
+    \text{Assume that }\frac{d^2f}{d_{x_i}d_{x_j}}\text{ exists and continuous in }B(y,r)\text{ for all }1\leq i,j\leq 2 \\
+    \text{Assume further that $f$ has a critical point at $y$, that is, }\fbox{$\nabla f(y)=\vec{0}$}
+  \end{cases}
+\end{equation*}
+Our Hessian at $y$ is: \\
+\fbox{
+  \begin{equation*}
+    H(y) =
+    \begin{pmatrix*}
+      f_{x_1x_1}(y) & f_{x_1x_2}(y)\\
+      f_{x_2x_1}(y) & f_{x_2x_2}(y)
+    \end{pmatrix*}
+    =
+    \begin{pmatrix*}
+      A & B \\
+      B & C
+    \end{pmatrix*}
+  \end{equation*}
+}, \\
+where we set $A=f_{x_1x_1}(y)$, $B=f_{x_1x_2}(y)$, $C=f_{x_2x_2}(y)$ \\
+To find eigenvalues of $H(y)$, we solve \\
+\[ \text{det}(\lambda I-H(y))=\text{det}
+\begin{pmatrix*}
+  \lambda-A & -B \\
+  -B & \lambda-C
+\end{pmatrix*}
+=(\lambda-A)(\lambda-C)-B^2=0 \]
+\[ \iff \fbox{\[ \lambda^2-(A+C)\lambda+AC-B^2=0 \]} \]
+Let $\lambda_1$, $\lambda_2$ be the two roots of the above quadratic equation. \\
+\begin{equation}
+  \text{Then (by Vieta's theorem) }
+  \begin{cases}
+    \lambda_1+\lambda_2=A+C \\
+    \lambda_1\cdot\lambda_2=AC-B^2=\Delta=\text{det }H(y)
+  \end{cases}
+\end{equation}
+Then we have the following conclusions \\
+\circled{1} If \fbox{$\Delta<0$}, then $\lambda_1$, $\lambda_2$ have opposite signs $\Rightarrow$ \fbox{y is a saddle point} \\
+\circled{2} If \fbox{$\Delta>0$}, then $\lambda_1$, $\lambda_2$ have the same signs. \\
+We now just need to determine their signs \\
+Note that \\
+\[ \Delta = AC-B^2>0\Rightarrow AC>B^2\geq 0\Rightarrow\fbox{$AC>0$} \]
+\[ \circled{2.1}\text{ }\fbox{If $A>0$}\Rightarrow C>0\Rightarrow A+C>0\Rightarrow\lambda_1,lambda_2>0 \]
+\[ \text{which gives that }\fbox{y is a local min} \]
+\[ \circled{2.2}\text{ }\fbox{If $A<0$}\text{ Same logic gives }\fbox{y is a local max} \]
+\end{document}
