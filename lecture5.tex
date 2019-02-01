@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 5}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Example}
+\[ f:\BR^3\rightarrow\BR \]
+\[ (x,y,z)\mapsto f(x,y,z)=\vec{0} \]
+\subsection*{Critical Points}
+\[ \nabla f(x,y,z)=\vec{0} \]
+\[ \iff (f_x,f_y,f_z)=(0,0,0) \]
+\[ \iff (yz,xz,xy)=(0,0,0) \]
+\[ xy = yz = zx = 0 \]
+\[ (x,0,0)\forall x\in\BR \]
+\[ (0,y,0)\forall y\in\BR \]
+\[ (0,0,z)\forall z\in\BR \]
+\[ (0,0,0) \]
+\begin{align*}
+  H(x,y,z) & =
+  \begin{pmatrix*}
+    f_{xx} & f_{xy} & f_{xz} \\
+    f_{yx} & f_{yy} & f_{yz} \\
+    f_{zx} & f_{zy} & f_{zz}
+  \end{pmatrix*} \\
+  & =
+  \begin{pmatrix*}
+    0 & z & y \\
+    z & 0 & x \\
+    y & x & 0
+  \end{pmatrix*}
+\end{align*}
+\subsection*{At the origin}
+\[ H(\vec{0}) =
+\begin{pmatrix*}
+  0 & 0 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & 0
+\end{pmatrix*}
+\]
+All eigenvalues are 0 $\Rightarrow$ inconclusive. \\
+But we can see that $\vec{0}$ is a saddle point as for \\
+any $r>0\in B(\vec{0},r)$, we take $(\frac{r}{2},\frac{r}{2},\frac{r}{2})$, $(-\frac{r}{2},-\frac{r}{2},-\frac{r}{2})$ \\
+\subsection*{At the point $(0,0,1)$}
+\[ H(0,0,1) =
+\begin{pmatrix*}
+  0 & 1 & 0 \\
+  1 & 0 & 0 \\
+  0 & 0 & 0
+\end{pmatrix*}
+\]
+\end{document}
