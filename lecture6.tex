@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 6}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Lagrange Multipliers}
+\subsection*{Theorem: Lagrange Multiplier}
+At a local max/min of $f$ on $S$, say $x_0\in S$, we have \\
+$\nabla f(x_0)=\lambda\nabla g(x_0)$ for some $\lambda\in\BR$ \\
+\begin{proof}
+  Lets asume f has a local min $x_0\in S$ \\
+  Lets take any nice/smooth curve $\delta:(-r,r)\rightarrow S$, with \\
+  $\delta(0)=x_0$. We have 2 facts. \\
+  \circled{1} $g(\delta(s)) = 0$ $\forall$ $s\in(-r,r)$ \\
+  \circled{2} $s\mapsto f(\delta(s))$ has a local min at $s=0$ \\
+  \\
+  For \circled{1} : \\
+  \[ g(\delta(s)) = 0 \]
+  \[ \Rightarrow\frac{d}{ds}g(\delta(s))=\nabla g(\delta(s))\cdot\delta^\prime(s)=0 \]
+  In particular, at $s=0$, \\
+  \[ \nabla g(\delta(0))\cdot\delta^\prime(0) = \fbox{$\nabla g(x_0)\cdot\delta^\prime(0)=0$} \]
+  $\Rightarrow\nabla g(x_0)\perp\delta^\prime(0)$ for any tangent vector $\delta^\prime(0)$ \\
+  $\Rightarrow$ geometrically, \\
+  \[ \fbox{$\nabla g(x_0)$ is a normal vector to surface $S$ at $x_0$} \]
+  \\
+  For \circled{2} : \\
+  $s\mapsto\phii(s)=f(\delta(s))$ has a local min at $s=0$ \\
+  that means that $\phii^\prime(0)=0$. \\
+  And same as before, \\
+  \[ \phii^\prime(0)=\nabla f(\delta(0))\cdot\delta^\prime(0)=\nabla f(x_0)\cdot\delta^\prime(0)=0 \]
+  so $\nabla f(x_0)$ is another normal vector to $S$ at $x_0$
+\end{proof}
+\subsection*{Example 1}
+\[ f,g:\BR^3\rightarrow\BR \]
+Find the maximum of $f(x) = x_1^2$ \\
+subject to $g(x)=x_1^2+x_2^2+x_3^2-4=0$ \\
+\[ \nabla f(x0 = \lambda\nabla g(x)\text{ for }x\in S) \]
+\[ (2x_1,0,0) = \lambda(2x_1,2x_2,2x_3) \]
+There are two cases: \\
+\begin{equation*}
+  \begin{cases}
+      \lambda = 0: x_1=0,x_2^2+x_3^2=4 \\
+      \indent\Rightarrow (0,x_2,x_3) \text{ where } x_2^2+x_3^2=4 \\
+      \lambda \neq 0: x_2=x_3=0 \\
+      \indent\Rightarrow x_1=\pm 2 \\
+  \end{cases}
+\end{equation*}
+\begin{align*}
+  \text{We have } & f(0,x_2,x_3)=0 \\
+  & f(\pm2,0,0)=4
+\end{align*}
+By comparing, we get the maximum of $f = 4$ \\
+\subsection*{Example 2}
+In $\BR^2$, find the minimum distance from the origin \\
+to $\big\{(x_1,x_2)\in\BR^2:x_1,x_2=1\big\}$ \\
+Find the minimum of $f(x)=x_1^2+x_2^2$ \\
+subject to $g(x)=x_1x_2-1=0$ \\
+\[ \nabla f(x) = \lambda\nabla g(x) \text{ for }x\in S \]
+\[ \iff (2x_1,2x_2)=\lambda(x_2,x_1) \]
+In this case, we have $\lambda\neq0$ \\
+\begin{equation*}
+  \begin{cases}
+    2x_1 = \lambda x_2 \\
+    2x_2 = \lambda x_1
+  \end{cases}
+  \Rightarrow\lambda^2=4\Rightarrow\lambda=\pm2
+\end{equation*}
+\fbox{If $\lambda=2,x_1=x_2$} \\
+\end{document}
