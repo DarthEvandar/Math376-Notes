@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 7}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\subsection*{Theorem 1}
+  Let $R = [a_1,b_1]\times[a_2,b_2]\times\dots\times[a_n,b_n]\subset\BR^n$ be a closed box \\
+  Let $f:R\rightarrow\BR$ be a continuous function. \\
+  Then \fbox{max of $R$ in $f$ and min of $R$ in $f$ exist} \\
+\subsection*{Remarks}
+  \circled{1} In single variable calculus, \\
+  \indent If $f:[a,b]\rightarrow R$ continuous, then \\
+  \indent $\min\limits_{[a,b]}f$ and $\max\limits_{[a,b]}f$ exist \\
+  \circled{2} If we replace by a non-closed interval, \\
+  \indent then the conclusion might fail. \\
+  \indent Ex. $f(x)=\frac{1}{x}$ for $x\in(0,1]$ \\
+  \indent max $f$ does not exist \\
+\subsection*{Proof for $n=2$}
+  \begin{proof}
+    We claim $f$ is bounded in $R = [a_1,b_1]\times[a_2,b_2]$ \\
+    Proof by contradiction, assume $f$ is not bounded from above in $R$ \\
+    (that is $f$ takes values going to $+\infty$ on $R$) \\
+    We divide the boxes in an inductive manner as following \\
+    \begin{itemize}
+      \item First, divide $R$ into 4 equal sized boxes since $f$ is not \\
+      bounded from above in $R$, $f$ must not be bounded from above in one \\
+      sub-box $R_1,R_2=[a_1^1,b_1^1]\times[a_2^1,b_2^1]$
+      \item Then take $R_1$, divide it into 4 equal sub-boxes and repeat as above$\Rightarrow$we find $R_2$ \\
+      \item Keep doing so indefinitely, we find boxes \\
+      \begin{equation*}
+        \begin{cases}
+          R\supset R_1\supset R_2\supset\dots\supset R_k \\
+          R_k=[a_1^k,b_1^k]\times[a_2^k,b_2^k],b_1^k-a_1^k=\frac{b_1-a_1}{2^k} \\
+          f\text{ is not bounded from above in any of }R_k
+        \end{cases}
+      \end{equation*}
+    \end{itemize}
+    \subsection*{Observations}
+      \circled{1}
+      \begin{align*}
+        & \{a_1^k\}\text{ increasing in }k \\
+        & \{b_1^k\}\text{ decreasing in }k
+      \end{align*}
+      \circled{2} \[b_1^k-a_1^k=\frac{b_1-a_1}{2^k}\xrightarrow{k\rightarrow\infty}0\]
+      \\
+      $\Rightarrow \{a_1^k\},\{b_1^k\}$ converge to the same limit, \\
+      \[ \lim_{k\rightarrow\infty}a_1^k=\lim_{k\rightarrow\infty}b_1^k=\bar{a} \]
+      Similarly,
+      \[ \lim_{k\rightarrow\infty}a_2^k=\lim_{k\rightarrow\infty}b_2^k=\bar{b} \]
+      \[ \Rightarrow \bigcap\limits_{k\in\BN}R_k=\big\{(\bar{a},\bar{b})\big\} \]
+      In words, $\{R_k\}$ shrinks to exactly one point, $(\bar{a},\bar{b})$, which \\
+      contradicts as $f\big((\bar{a},\bar{b})\big)\in\BR$, and is not $+\infty$ \\
+      \\
+      Now that we have $f$ is bounded in $R$, we show $\max\limits_Rf$ exists \\
+      as $f$ is bounded in $R\Rightarrow$ \fbox{$\sup\limits_Rf,\inf\limits_Rf$ exist} \\
+      $\sup\limits_V$ is a generalization of $\max\limits_V$ \\
+      (in fact, if $\max\limits_V$ exists, it's clear that $\sup\limits_V$ = $\max\limits_V$) \\
+      However, in many cases, $\max\limits_V$ does not exist \\
+      \begin{align*}
+        \text{Ex. } & V=(0,1)\subset\BR,\min_V,\max_V\text{ DNE, }\inf_V=0,\sup_V=1 \\
+        & W = \big\{\frac{1}{n}:n\in\BN\big\}\subset\BR,\max_W=\sup_W=1,\min_W\text{ DNE },\inf_W=0
+      \end{align*}
+      What remains now is to show that $\max\limits_Rf$ exists, and equals $\sup\limits_Rf$ \\
+      \[ \sup_Rf=M\in\BR \]
+      Repeat exactly all step 1, and note \\
+      \[ \sup_{R_k}f=M \]
+      Remember that $\{R_k\}$ shrinks to exactly one point, \\
+      \[ \fbox{$(\bar{a},\bar{b})\Rightarrow f\big((\bar{a},\bar{b})\big)=M$} \]
+  \end{proof}
+\subsection*{Theorem 2}
+  $R=[a_1,b_1]\times\dots\times[a_n,b_n]\subset\BR^n,f:R\rightarrow\BR$ is continuous \\
+  Then for any fixed $\epsilon>0$, we can divide $R$ into $2^m$ sub-boxes \\
+  $R_1,R_2,...,R_{2^m}$ so that \\
+  \[ \fbox{$\max\limits_{R_k}-\min\limits_{R_k}<\epsilon\forall k$} \]
+  (f is uniformly continuous on $R$)
+\end{document}
