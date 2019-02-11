@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\prm}{^\prime}
+\newcommand{\phii}{\varphi}
+\title{Lecture 9}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Last Time}
+Path integral does not depend on parameterization \\
+More precisely, \\
+\[ \alpha:[a,b]\rightarrow\BR^n\text{ is a $C^1$ path} \]
+\[ \beta:[c,d]\rightarrow\BR^n \]
+\[ \beta(s)=\alpha(u(s))\text{ for a $C^1$ function} \]
+\[ u:[c,d]\rightarrow[a,b]\text{ s.t. }u\text{ increasing, }u(c)=a,u(d)=b \]
+\subsection*{Remark}
+  If we fix the direction of $\alpha$ \\
+  Then $\int f\cdot d\alpha=-\int f\cdot d\gamma$ \\
+\section*{Path integral on work done}
+  A particle has a path $\alpha(t):a\leq t \leq b$ \\
+  We're given a vector field
+  \[ f:\BR^n\rightarrow\BR^n\text{ is continuous} \]
+  Q: Work done by the vector field $f$ on the path of this particle? \\
+  At any $t\in(a,b), \alpha\prm(t)$ is a tangent vector to the path \\
+  $\rightarrow$ Component $f(\alpha(t))\cdot\alpha\prm(t)$ \\
+  $\rightarrow$ Work done: \\
+  = total effective amount of force \\
+  = $\int\limits_a^bf(\alpha(t))\cdot\alpha\prm(t)dt=\int f\cdot dx$ \\
+  \subsection*{Remark}
+    $\alpha\prm(t)$ needs not to be a unit tangent vector, and in fact, \\
+    it's size can be large(if one goes fast) or small (if one goes slow) \\
+  \subsection*{Length of a path}
+    Let $\alpha:[a,b]\rightarrow\BR^n$ be a $C^1$-path \\
+    What is the length of the path? \\
+  \subsection*{Theorem}
+    Length of our path is \\
+    \[ L(\alpha) = \int_a^b|\alpha\prm(t)|dt \]
+    Here $|\alpha\prm(t)|$ is the Euclidean lenth of vector $\alpha\prm(t)\in\BR$ \\
+  \subsection*{Proof}
+    \begin{proof}
+      Divide $[a,b]$ into $k$ intervals \\
+      $[a,b]=[a,a_1]U\dots U[a_{k-1},b]$ \\
+      \begin{align*}
+        L(\alpha) & = \sum\text{ length of these $k$ line segments} \\
+        & = \sum_{i=1}^k|\alpha(a_i)-\alpha(a_{i-1})| \\
+        & = \sum_{i=1}^k|\alpha\prm(a_{i-1})(a_i-a_{i-1})|+\text{ error} \\
+        & \approx\sum_{i=1}^k|\alpha\prm(a_{i-1})(a_i-a_{i-1})| \\
+        & \xrightarrow[\text{length of subintvervals to 0}]{k\rightarrow\infty}\int_a^b|\alpha\prm(t)|dt
+      \end{align*}
+    \end{proof}
+  \subsection*{Example}
+    Length of the unit circle in $\BR^2$ \\
+    \[ \alpha:[0,2\pi]\rightarrow\BR^2 \]
+    \[ \theta\mapsto\alpha(\theta)=(\cos(\theta),\sin(\theta)) \]
+    We know $\alpha\prm(\theta)=(-\sin(\theta),\cos(\theta))$ \\
+    \[ L(\alpha) =\int_0^{2\pi}|\alpha\prm(\theta)d\theta=\int_0^{2\pi}1d\theta=2\pi \]
+  \subsection*{Arc Length}
+    how much have we traveled up to time $t$ \\
+    \[ \alpha[a,b]\rightarrow\BR^n \text{ is } C^1\text{ - path} \]
+    Arc length $s(t)$ for $a\leq t \leq b$ \\
+    \[ S(t) = \int_a^t|\alpha\prm(r)|dr \]
+    $S(t)$ measures the distance $\alpha$ travels from time $a$ to time $t$ \\
+    Clearly, $S\prm(t)=|\alpha\prm(t)|$ \\
+    So a fun corollary is the following \\
+  \subsection*{Corollary}
+    If $s(t)=t-a$ for all $a\leq t \leq b$, then the velocity \\
+    $|\alpha\prm(t)|$ is always 1, and $\alpha\prm(t)$ is the unit tangent \\
+    vector to the path \\
+  \subsection*{Proof}
+    \begin{proof}
+      If $s(t)=t-a\Rightarrow S\prm(t)=1$ always \\
+      $\Rightarrow S\prm(t)=|\alpha\prm(t)|=1$
+    \end{proof}
+  \subsection*{Remark}
+    You can always paramerize your curve with unit constant velocity
+\section*{Line integral with respect to arc length}
+  \begin{equation*}
+    \begin{cases}
+      \alpha:[a,b]\rightarrow\BR^n \text{ is }C^1\text{ - curve} \\
+      \phii:\BR^n\rightarrow\BR: \text{ is a real-valued function} \\
+    \end{cases}
+  \end{equation*}
+  \[ \int_C\phii ds= \int_a^b\phii(\alpha(t))\cdot s(t)dt \]
+  \fbox{$s\prm(t)=|\alpha\prm(t)|$} \\
+  \fbox{$\phii(\alpha(t))$ is the value of $\phii$ on curve $C$} \\
+  \fbox{$s\prm(t)$ is the arc length $s(t)$} \\
+  \subsection*{Theorem}
+    $\alpha:[a,b]\rightarrow\BR^n$ is $C^1$ curve \\
+    \[ T(t)=\frac{\alpha\prm(t)}{|\alpha\prm(t)|} \text{ unit tangent vector to the path at $\alpha(t)$} \]
+    Let $f:\BR^n\rightarrow\BR^n$ be a continuous vector field \\
+    Define $\phii(\alpha(t))=f(\alpha(t))\cdot T(t)$ \\
+    Then: \fbox{$\int f\cdot d\alpha=\int_C\phii ds$} \\
+  \subsection*{Proof}
+    \begin{proof}
+      \[ \int f\cdot dx=\int_a^b f(\alpha(t))\cdot\alpha\prm(t)dt=\int_a^b f(\alpha(t))\cdot T(t)\cdot|\alpha\prm(t)|dt=\int_C\phii ds \]
+    \end{proof}
+\end{document}
