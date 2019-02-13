@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 10}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\subsection*{Recap}
+  Curve $C$ has a parameterization \\
+  \[ \alpha :[a,b]\rightarrow\BR^n \]
+  \[ t: \mapsto \alpha(t)\text{, which is }C^1 \]
+  Arc Length \\
+  \[ s(t)=\int_a^t|\alpha \prm(s)| ds \]
+  \[ s\prm(t)=|\alpha \prm(t)| \]
+  Line Integral w.r.t. arc length \\
+  \[ \phii:\BR^n\rightarrow\BR\text{ is continuous} \]
+  \[ \int_C\phii ds=\int_a^b\phii(\alpha (t))s\prm(t) dt \]
+  \[ \int_C\phii ds=\int_a^b\phii(\alpha (t))|\alpha \prm(t)| dt \]
+\section*{Quick Applications}
+  C is a wire, and $\alpha :[a,b]\rightarrow\BR^n$ is one parameterization of $C$ \\
+  \circled{1} Length of $C=L(\alpha )=L(C)=\int\limits_a^b|\alpha \prm(t)|dt$ \\
+  \circled{2} Mass of $C$: assume that at $\alpha(t)$, mass density of $C$ \\
+    is $\phii(\alpha(t))$ (per unit length) \\
+    Mass of $C=M=\int_C\phii ds=\int\limits_a^b\phii(\alpha(t))|\alpha\prm(t)| dt$ \\
+  \circled{3} Center of mass: assume our wire $C$ is in $\BR^3$ \\
+    center of mass of $C$ is $(\bar{x},\bar{y},\bar{z})\in\BR^3$ s.t. \\
+    \begin{equation*}
+      \begin{cases}
+        M\bar{x}=\int_Cx\phii ds \\
+        M\bar{x}=\int_Cy\phii ds \\
+        M\bar{x}=\int_Cz\phii ds \\
+      \end{cases}
+    \end{equation*}
+  \subsection*{Example}
+    $C$ is a helix shape \\
+    $\alpha(t)=(a\cos(t),a\sin(t),bt): t\in[0,2\pi]$ \\
+    Mass density at $(x,y,z)\in\BR^3$ is \\
+    \[ \phii(x,y,z)=x^2+y^2+z^2 \]
+    Mass $M=\int_C\phii ds$ \\
+    \[ = \int_0^{2\pi}\phii(\alpha(t))|\alpha\prm(t)|dt \]
+    \begin{align*}
+      \phii(\alpha(t)) & = \phii(a\cos(t),a\sin(t),bt) \\
+      & = (a\cos(t))^2+(a\sin(t))^2+(bt)^2 \\
+      & = a^2+b^2t^2 \\
+    \end{align*}
+    \[ \alpha\prm(t)=(-a\sin(t),a\cos(t),b) \]
+    \[ |\alpha\prm(t)|=\sqrt{(-a\sin(t))^2+(a\cos(t))^2+b^2}=\sqrt{a^2+b^2} \]
+    \[ M=\int_0^{2\pi}(a^2+b^2t^2)\sqrt{a^2+b^2}dt=\sqrt{a^2+b^2}(2\pi a^2+\frac{8\pi^3b^2}{3}) \]
+  \circled{4} : Moment of inertia about a line $L$ \\
+    $C$ is a curve in $\BR^3$ \\
+    $L$ is a given line in $\BR^3$ \\
+    For each point $(x,y,z)\in C$, \\
+    let $\delta(x,y,z)$ be the distance from $(x,y,z)$ to $L$ \\
+    Moment of inertia about $L$ is \\
+    \[ I_L=\int_C\delta(x,y,z)^2\phii ds \]
+\section*{Second Fundamental Theorem of calculus for Line Integrals}
+  Let $U\subset\BR^n$ be an open set \\
+  \subsection*{Define Connectedness of $U$}
+    We say $U$ is connected(path-connected) \\
+    if for any given two points $x,y\in U$ \\
+    we can find a piecewise $C^1$ path \\
+    \indent $\alpha:[a,b]\rightarrow U$ s.t. \\
+    \indent $\alpha(a)=x$ and $\alpha(b)=y$ \\
+    Ex. of non-connectedness \\
+    $U=U_1\cup U_2: U_1,U_2$ distinct sets \\
+  \subsection*{Theorem}
+    Let $U\subset\BR^n$ be open and connected \\
+    Let $\Psi:U\rightarrow\BR$ be a $C^1$ real valued function \\
+    Let $f:U\rightarrow\BR^n$ be a vector field s.t. \\
+    \[ f(x)=\nabla\Psi(x)\text{: gradient vector field of }\Psi \]
+    Then, for any $x,y\in U$ being connected by any \\
+    piecewise $C^1$ path $\alpha:[a,b]\rightarrow U$, $\alpha(a)=x,\alpha(b)=y$ \\
+    \[ \fbox{$\int f\cdot d\alpha = \Psi(y)-\Psi(x)$} \]
+  \subsection*{Proof}
+    \begin{proof}
+      Assume $\alpha$ is $C^1$ \\
+      \[ \int f\cdot d\alpha=\int_a^b f(\alpha(t))\cdot \alpha\prm(t)dt \]
+      \[ = \int_a^b\nabla\Psi(\alpha(t))\cdot \alpha\prm(t)dt \]
+      \[ = \int_a^b\frac{d}{dt}(\Psi(\alpha(t)))dt=\Psi(\alpha(b))-\Psi(\alpha(a))=\Psi(y)-\Psi(x) \]
+    \end{proof}
+  \subsection*{Corollary}
+    \[ \oint f\cdot d\alpha=0 \text{ under the assumption of our theorem} \]
+  \subsection*{Remark}
+    If $f$ is not a gradient vector field, then in general, \\
+    \[ \oint f\cdot \alpha \neq 0 \]
+  \subsection*{Remark}
+    How do we know if $f$ is a gradient vector field or not? \\
+    In $\BR^2$, if everything is nice, and $f(x)=\nabla\Psi(x)$ \\
+    Then $f(x)=(f_1(x),f_2(x))=(\Psi_{x_1}(x),\Psi_{x_2}(x))$ \\
+    \begin{equation*}
+      \begin{cases}
+        f_1(x)=\Psi_{x_1}(x) \\
+        f_2(x)=\Psi_{x_2}(x)
+      \end{cases}
+      \Rightarrow
+      \begin{cases}
+        (f_1)_{x_2}=\Psi_{x_1x_2}(x) \\
+        (f_2)_{x_1}=\Psi_{x_2x_1}(x)
+      \end{cases}
+    \end{equation*}
+    So \fbox{$(f_1)_{x_2}=(f_2)_{x_1}$}
+\end{document}
