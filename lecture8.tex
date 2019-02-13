@@ -36,19 +36,24 @@ $\alpha$ is a piecewise $C^1$ path \\
   \circled{1} Let $\alpha:[a,b]\rightarrow\BR^n$ be a $C^1$ path \\
   Let $f:\BR^n\rightarrow\BR^n$ be a continuous vector field \\
   \[ \text{Define }\int f\cdot dx=\int_a^bf(\alpha(t))\cdot\alpha\prm(t)dt \]
-  In a more explicit way, $\alpha(t)=(\alpha_1(t),\alpha_2(t),\cdots,\alpha_n(t))$ \\
+  In a more explicit way, \\
+  \[ \alpha(t)=(\alpha_1(t),\alpha_2(t),\cdots,\alpha_n(t)) \]
   $f(x) = (f_1(x), f_2(x),\cdots,f_n(x))$ \\
   \[ \Rightarrow\int f\cdot dx=\int_a^b f(\alpha(t))\cdot\alpha\prm(t)dt=\int_a^b\sum_{k=1}^nf_k(\alpha(t))\alpha\prm_k(t))dt \]
-  \circled{2} If $\alpha$ is a piecewise $C^1$, then we define $\int f\cdot dx=\int\limits_{a_0}^{a_1}f(\alpha(t))\cdot\alpha\prm(t)dt+\cdots+\int\limits_{a_k}^{a_{k+1}}f\cdot dt$ \\
-  \circled{3} If $\alpha$ is a closed curve, that is $\alpha(a)=\alpha(b)$, then we also write $\int f\cdot d\alpha=\oint fd\alpha$ \\
+  \circled{2} If $\alpha$ is a piecewise $C^1$, then we define \\
+  \[ \int f\cdot dx=\int_{a_0}^{a_1}f(\alpha(t))\cdot\alpha\prm(t)dt+\cdots+\int_{a_k}^{a_{k+1}}f\cdot dt \]
+  \circled{3} If $\alpha$ is a closed curve, that is $\alpha(a)=\alpha(b)$, then we also write \\
+  \[ \int f\cdot d\alpha=\oint fd\alpha \]
   Note that there are many ways to parameterize a path/curve in $\BR^n$ \\
-  \subsection{Concern}
+  \subsection*  {Concern}
     Do all parameterizations of the same path yield some line integral? \\
-    $\int f\cdot d\alpha=\int f\cdot d\beta$ \\
-  \subsection{Proof}
+    \[ \int f\cdot d\alpha=\int f\cdot d\beta \]
+  \subsection*{Proof}
     \begin{proof}
       Let $\alpha:[a,b]\rightarrow\BR^n$ is $C^1$, $t\mapsto\alpha(t)\in\BR^n$ \\
       Let $\beta:[c,d]\rightarrow\BR^n$ such that $s\mapsto\beta(s)=\alpha(u(s))$ for $c\leq s\leq d$ \\
       Where $u:[c,d]\rightarrow[a,b]$ is $C^1$, is increasing, and $u(c)=a, u(d)=b$ \\
+      $\int f\cdot d\beta=\int_c^d f(\beta(s))\cdot\beta\prm(s)ds=\int_c^df(\beta(s))\cdot\alpha\prm(u(s))u\prm(s)ds$ \\
+      Let $t=u(s)\Rightarrow dt=u\prm(s)ds\rightarrow=\int_a^b f(\alpha(t))\cdot\alpha\prm(t)dt$ \\
     \end{proof}
 \end{document}
