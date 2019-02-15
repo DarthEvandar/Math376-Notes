@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 11}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\subsection*{Last Time}
+  \[ \int f\cdot d\alpha=\int\nabla\Psi\cdot d\alpha=\Psi(y)-\Psi(x) \]
+  \[ \oint f\cdot d\alpha=\oint\nabla\cdot d\alpha=0 \]
+\subsection*{Example}
+  Compute path integral with $f(x_1,x_2)=(x_1,x_2):\BR^2\rightarrow\BR^2$ \\
+  and $\alpha(t)=(t^5\cos^{2019}(t),t^{2020}),0\leq t\leq 1$ \\
+  Note: $f(x_1,x_2)=(x_1,x_2)=\nabla\Psi(x_1,x_2)$, where \\
+  \[ \Psi(x_1,x_2)=\frac{x_1^2}{2}+\frac{x_2^2}{2} \]
+  \[ \text{Then, }\int f\cdot d\alpha=\int\nabla\Psi\cdot d\alpha=\Psi(\alpha(1))-\Psi(\alpha(0)) = \]
+  \[ \Psi(\cos^{2019}(1),1)-\Psi(0,0)=\frac{\cos^{4058}(1)}{2}+\frac{1}{2} \]
+\subsection*{1st Fundamental Theorem of Line Integrals}
+  Let $U\subset\BR^n$ be \underline{open} and \underline{connected} \\
+  Let $f:U\rightarrow\BR^n$ be a continuous vector field \\
+  (If path integrals $\int f\cdot d\alpha$ are independent of the paths, \\
+  then $f$ is a gradient vector field) \\
+  Assume path integrals $\int f\cdot d\alpha$ are independent of paths. \\
+  Denote by $\Phi(x)=\int f\cdot d\alpha$ for $x$ connects $z$ to $x$ for $z$ fixed in $U$ \\
+  Then, \fbox{$f(x)=\nabla\Psi(x)$} \\
+\subsection*{Proof}
+  \begin{proof}
+    We'll show that at every $x\in U$ \\
+    \[ f(x)=(f_1(x),\dots,f_n(x))=(\Psi_{x_1}(x),\dots,\Psi_{x_n}(x)) \]
+    Let's just show $f_1(x)=\Psi_{x_1}(x)$ \\
+    Assume $x\in U$ open, we can find $r>0$ s.t. $B(x,r)\subset U$ \\
+    For $|s|<r$, we'll compare values of $\Psi(x+se_1)$ with $\Psi(x)$ \\
+    Define $\gamma:[0,s]\rightarrow U$ s.t. $\gamma(r) = x+re_1$ \\
+    \[ \text{Then, }\Psi(x+se_1)-\Psi(x)=(\int f\cdot d\alpha+\int f\cdot d\gamma)-\int f\cdot d\alpha \]
+    \[ \Rightarrow \Psi(x+se_1)-\Psi(x)=\int f\cdot d\gamma=\int_0^sf(x+re_1)\cdot\gamma\prm(r)dr \]
+    \[ =\int_0^sf(x+re_1)\cdot e_1dr=\int_0^sf_1(x+re_1)dr \]
+    \[ \text{We get }\frac{\Psi(x+se_1)-\Psi(x)}{s}=\frac{1}{s}\int f_1(x+re_1)dr \]
+    Let $s\rightarrow 0$, we get \\
+    \[ \lim_{s\rightarrow 0}\frac{1}{s}\int_0^sf_1(x+re_1)dr=f_1(x) \]
+    \[ \Rightarrow\fbox{$\Psi_{x_1}(x)=f_1(x)$} \]
+  \end{proof}
+\subsection*{Fun Fact}
+  Let $g:\BR\rightarrow\BR$ be a continuous function \\
+  Then, \fbox{$\lim\limits_{s\rightarrow 0}\frac{1}{s}\int\limits_x^{x+s}g(r)dr=g(x)$} \\
+\subsection*{Proof}
+  \begin{proof}
+    Define: $G(y)=\int\limits_x^yg(r)dr\rightarrow G\prm(y)=g(y)$ \\
+    LHS $\int\limits_x^{x+s}g(r)dr=\frac{G(x+s)-G(x)}{s}$ \\
+    $G\prm(y)=g(z)$ for some $z$ in $[x,x+s]$ \\
+    \[ \lim_{s\rightarrow 0}\frac{1}{s}\int_x^{x+s}g(r)dr=g(x)\text{ as }z\rightarrow x, s\rightarrow 0 \]
+  \end{proof}
+\subsection*{Corollary}
+  If $\oint f\cdot d\alpha=0$ for all closed paths $\alpha$, then \\
+  $f$ is a gradient vector field
+\end{document}
