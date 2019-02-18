@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 12}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Last Time}
+\subsection*{Theorem}
+Let $U\subset\BR^n$ be open and connected \\
+Let $f: U\rightarrow\BR^n$ be a continuous vector field. The following are equivalent\\
+(i) $f=\nabla\Psi$ for some $\Psi\cdot U\rightarrow\BR$, $\Psi\in C^1$ \\
+(ii) Line integrals of $f$ are independent of paths \\
+(iii) $\oint_C f\cdot d\alpha=0$ for every piecewise $C^1$ closed path \\
+\section*{Proof of (iii)$\Rightarrow$(ii)}
+\begin{proof}
+  To prove (ii), let's take two curves $C_1$, $C_2$ with some end points \\
+  \[ C_1: \alpha[0,t]\rightarrow U: \alpha(0)=x, \alpha(t)=y \]
+  \[ C_1: \beta:[0,s]\rightarrow U: \beta(0)=x, \beta(s)=y \]
+  Need to show: $\int f\cdot d\alpha=\int f\cdot d\beta$ \\
+  Let $\gamma$ to be a parameterization of $C_2$ in the reverse direction, that is \\
+  \[ \gamma:[0,s]\rightarrow U: \gamma(r)=\beta(s-r)\text{ for } 0\leq r \leq s \]
+  Then $C=C_1\cup C_2=\alpha\cup\gamma$ is a closed path \\
+  \[ \text{By (iii) } \int f\cdot d\alpha+\int f\cdot d\gamma-\int f\cdot d\beta = 0 \]
+  \[ \Rightarrow \int f\cdot d\alpha = \int f \cdot d\beta \]
+\end{proof}
+\subsection*{Remark}
+  \circled{1} For $f$ to be a gradient vector field, we really need to know \\
+  that path integrals are \underline{independent of paths} \\
+  \circled{2} \underline{Not all vector fields are gradient vector fields} \\
+\subsection*{Example}
+    In general, $f:U\rightarrow\BR^n$ \\
+    \[ f(x)=(f_1(x),f_2(x),\dots,f_n(x)) \]
+    is a continuous vector field. There is no relation between $f_i(x)$ and $f_j(x)$ \\
+    For $f$ to be a gradient vector field \\
+    \[ f(x)=\nabla\Psi(x) \text{ where }\Psi:U\rightarrow\BR\text{ is }C^1 \]
+    \[ (f_1(x),f_2(x),\dots,f_n(x))=(\Psi_{x_1}(x),\Psi_{x_2}(x),\dots,\Psi_{x_n}(x)) \]
+    \begin{equation*}
+        \begin{cases}
+          f_i(x)=\Psi_{x_i}(x) \\
+          f_j(x)=\Psi_{x_j}(x) \\
+        \end{cases}\implies\newline\text{ There is a strong relation between}f_i\text{ and }f_j
+    \end{equation*}
+    $\Psi$ is called a potential function \\
+\subsection*{Lemma}
+  Assume $f=\nabla\Psi$, and $\Psi\in C^2$. Then: \\
+  \[ (f_i)_{x_j}=(f_j)_{x_i} \]
+\subsection*{Proof}
+  \begin{proof}
+    $f_i=\Psi_{x_i}\Rightarrow(f_i)_{x_j}=\Psi_{x_ix_j}$ \\
+    $f_j=\Psi_{x_j}\Rightarrow(f_j)_{x_i}=\Psi_{x_jx_i}$ \\
+    Since $\Psi\in C^2, \Psi_{x_ix_j},\Psi_{x_jx_i}$ are continuous in $U$, and we can \\
+    switch order of differentiation, that is $\Psi_{x_ix_j}=\Psi_{x_jx_i}$ \\
+    $\Rightarrow(f_i)_{x_j}=(f_j)_{x_i}$
+  \end{proof}
+\subsection*{Example}
+  $f:\BR^2\rightarrow\BR^2$ s.t. \\
+  \begin{equation*}
+    f(x,y)=(x,xy):
+    \begin{cases}
+      f_1(x,y)=x \\
+      f_2(x,y)=xy
+    \end{cases}
+  \end{equation*}
+  1st way: Assume that $f$ is a gradient vector field, that \\
+  $(f_1)_y=(f_2)_x$ \\
+  $\Rightarrow0=y$ $\bigotimes$ \\
+  $\rightarrow f$ is not a gradient vector field \\
+  2nd way: If $f$ were a gradient vector field, we would have \\
+  \[ f(x,y)=(x,x\cdot y)=(\Psi_x,\Psi_y) \]
+  \begin{equation*}
+    \begin{cases}
+      \Psi_x=x \\
+      \Psi_y=xy
+    \end{cases}\Rightarrow
+    \begin{cases}
+      \Psi(x,y)=\frac{x^2}{2}+C(y) \\
+      \Psi(x,y)=\frac{xy^2}{2}+C(x) \\
+    \end{cases}
+    \rightarrow \bigotimes
+  \end{equation*}
+\subsection*{Question}
+  If $f:U\rightarrow\BR^n$ is a $C^1$ vector field, and \\
+  \[ (f_i)_{x_j}=(f_j)_{x_i}\text{ for all } 1\leq i,j\leq n \]
+  then do we have that $f$ is a gradient vector field? \\
+\subsection*{Answer}
+  \circled{1} No in general (give one counterexample) \\
+  \circled{2} Yes if $U$ is convex \\
+  ($U$ is convex if for $x,y\in U\Rightarrow[xy]\subset U$) \\
+\subsection*{Lemma}
+  Let $f:\BR^2$\textbackslash$\{\vec{0}\}\rightarrow\BR^2$ s.t. \\
+  \[ f(x,y)=(-\frac{y}{x^2+y^2},\frac{x}{x^2+y^2}) \]
+  Then $(f_1)_y=(f_2)_x$, but $f$ is NOT a gradient vector field \\
+  \[f_1(x,y)=-\frac{y}{x^2+y^2},f_2(x,y)=\frac{x}{x^2+y^2} \]
+  Compare: \\
+  \begin{align*}
+    (f_1)_y & =-\frac{1}{x^2+y^2}-y(-1)(x^2+y^2)^{-2} \\
+    & = -\frac{1}{x^2+y^2}+\frac{2y^2}{(x^2+y^2)^2} \\
+    & = \frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=\frac{y^2-x^2}{(x^2+y^2)^2} \\
+  \end{align*}
+  DIY: $(f_2)_x=\frac{y^2-x^2}{(x^2+y^2)^2}$ \\
+  However, $f$ is not a gradient vector field \\
+  \[ f(\alpha(\theta))=f(\cos(\theta),\sin(\theta))=(-\sin(\theta),\cos(\theta)) \]
+  \[ \int f\cdot d\alpha = \int_0^{2\pi}(-\sin(\theta),\cos(\theta))\cdot(-\sin(\theta),\cos(\theta))d\theta=2\pi\neq 0 \]
+\end{document}
