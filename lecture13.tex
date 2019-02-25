@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 13}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Theorem}
+If $U$ is convex, and $(f_j)_{x_i}$ in $U$ for all $i,j$ \\
+then $f$ is a gradient vector field
+\subsection*{Proof}
+\begin{proof}
+  Lets just do it for $n=2$, that is, in two dimensions \\
+  Fix $z\in U$. Define \\
+  \[ \Psi(x)=\int_{[zx]}^rf\cdot d\alpha \]
+  \[ \alpha(t)=z+t(x-z)\text{ for } 0\leq t \leq 1 \]
+  \begin{align*}
+    \Psi(\alpha) & =\int_0^1f(\alpha(t))\cdot \alpha\prm(t)dt \\
+    & = \int_0^1f(z+t(x-z))\cdot(x-z)dt \\
+  \end{align*}
+  Claim: $\nabla\Psi=f$ \\
+  Lets just show: $\Psi_{x_1}=f_1$ \\
+  \begin{align*}
+    \Psi_{x_1}(x) & =\frac{d}{dx_1}\Big(\int_0^1f(z+t(x-z))\cdot(x-z)dt\Big) \\
+    & = \frac{d}{dx_1}\Big(\int_0^1f_1(z+t(x-z))\cdot(x_1-z_1)+f_2(z+t(x-z))\cdot(x_2-z_2)dt\Big) \\
+    & = \int_0^1t(f_1)_{x_1}(\sim)(x_1-z_1)+f_1(\sim)+tf_2(f_2)_{x_1}(\sim)\cdot(x_2-z_2)dt \\
+    & = \int_0^1t\nabla f_1(\sim)\cdot(x-z)+f_1(\sim)dt \\
+    & = \int_0^1\frac{d}{dt}(tf_1(z+t(x-z)))=f_1(z+x-z)=f_1(x)
+  \end{align*}
+\end{proof}
+\end{document}
