@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 14}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Multiple Integrals}
+Setting \\
+\[ Q=[a,b]\times[c,d]\subset\BR^2 \]
+is a given rectangle \\
+\[ f:Q\rightarrow\BR\text{ is a real valued function} \]
+which is bounded, that is, there is $M>0$ s.t. \\
+\[ |f(x)|\leq M\text{ for all }x\in Q \]
+\subsection*{Object of interest}
+\[ \iint_Qf(x,y)\,dx\,dy\text { or }\iint_Qf \]
+\subsection*{A few notions}
+\circled{1} Partitions of $Q$ \\
+$P_1=\{x_0,x_1,\dots,x_m\}$ is called a partition of $[a,b]$ if we have \\
+\[ x_0=a<x_1<\dots<x_{m-1}<x_m=b \]
+$P_2=\{y_0,y_1,\dots,y_k\}$ is called a partition of $[c,d]$ if we have \\
+\[ y_0=c<y_1<\dots<y_{k-1}<y_k=d \]
+Then $P_1\times P_2$ creates a partition of our rectangle $Q$, that is, \\
+$Q$ is divided into $m\cdot k$ subrectangles $Q_{ij}$, where \\
+\[ \fbox{$Q_{ij}=[x_{i-1},x_i]\times[y_{j-1},y_j]$} \]
+\circled{2} Let $P_1\times P_2$ be a partition of $Q$, \\
+and $\widetilde{P_1}\times\widetilde{P_2}$ be another partition of $Q$ \\
+\[ \text{If }\begin{cases}
+  P_1\subset\widetilde{P_1} \\
+  P_2\subset\widetilde{P_2}
+\end{cases}\text{ we say }\widetilde{P_1}\times\widetilde{P_2}\text{ is a finer partition than }P_1\times P_2 \]
+\circled{3} Step functions in $Q$ \\
+Let $P_1\times P_2$ be a partition of $Q$ \\
+\underline{Def.} we say that $f:Q\rightarrow\BR$ is a step function if \\
+\[ f(x,y)=C_{ij}\text{ for all }(x,y)\in Q_{ij} \]
+(that is, $f$ takes a constant value in each $Q_{ij}$) \\
+For this $f$, $f(x,y)=C_{ij}$ for $x\in Q_{ij}=[x_{i-1},x_i]\times[y_{j-1},y_j]$ \\
+\underline{we define} \\
+\begin{align*}
+  \iint_Qf & =\iint_Qf(x,y)\,dx\,dy=\sum_{i=1}^m\sum_{j=1}^kC_{ij}\cdot\text{area}(Q_{ij}) \\
+  & = \sum_{i=1}^m\sum_{j=1}^kC_{ij}(x_i-x_{i-1})\cdot(y_j-y_{j-1})
+\end{align*}
+Initial construction of $\iint_Qf$ \\
+given $f:Q\rightarrow\BR$ bounded \\
+\[ S=\{g:Q\rightarrow\BR:g\text{ is a step function, }g\leq f\text{ on } Q\} \]
+\[ T=\{h:Q\rightarrow\BR:h\text{ is a step function, }f\leq h\text{ on } Q\} \]
+functions in $S$ underestimate $f$ \\
+functions in $T$ overestimate $f$ \\
+\subsection*{Example}
+$f:[0,1]\rightarrow\BR$ with \\
+\[ f(x)=x \]
+Claim: $\int_0^1x\cdot dx=\frac{1}{2}$ \\
+\begin{proof}
+  Lets consider a partition \\
+  \[ \Big\{0,\frac{1}{k},\frac{2}{k},\dots,\frac{k-1}{k},\frac{k}{k}=1\Big\} \]
+  and we'll let $k\rightarrow\infty$ \\
+  For this $p^k$, define $g(x)=\frac{i}{k}$ for $\frac{i}{k}\leq x<\frac{i+1}{k}$ \\
+  so $g\in S$, and \\
+  \begin{align*}
+    \int_0^1g(x)dx & = \sum_{i=0}^{k-1}\frac{i}{k}\cdot\text{length of subinterval} \\
+    & = \sum_{i=0}^{k-1}\frac{i}{k}\cdot\frac{1}{k}=\frac{1}{k^2}\frac{k(k-1)}{2}=\frac{k-1}{2k}
+  \end{align*}
+  \[ h(x)=\frac{i+1}{k}\text{ for }\frac{1}{k}\leq x<\frac{i+1}{k} \]
+  \[ \text{so } h\in T, \int_0^1h(x)dx=\sum_{i=0}^{k+1}\frac{i+1}{k}\cdot\frac{1}{k}=\frac{1}{k^2}\frac{k(k+1)}{2}=\frac{k+1}{2k} \]
+\end{proof}
+
+\end{document}
