@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 15}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\subsection*{Claim 1}
+$S,T\neq\emptyset$ \\
+Let $s(x)=-M$ for all $x\in Q$, then, \\
+$s$ is a step function, $s\leq f$ on $Q$ \\
+$\rightarrow s\in S\rightarrow S\neq\emptyset$ \\
+Similarly, for $t(x)=M$ for $x\in Q, t\in T\rightarrow T\neq\emptyset$ \\
+\subsection*{Claim 2}
+For $s\in S, t\in T$, then $\iint_Qs(x,y)\,dx\,dy\leq\iint_Qt(x,y)\,dx\,dy$ \\
+By definition, $s\leq f\leq t\Rightarrow s\leq t$ on $Q$ \\
+\subsection*{Claim 3}
+\[ A=\Big\{\iint_Qs: s\in S\Big\}\subset\BR \]
+\[ B=\Big\{\iint_Qt: t\in T\Big\}\subset\BR \]
+\[ \text{Last time, }\int_0^1x\,dx=\frac{1}{2} \]
+\[ \frac{k-1}{2k}\in A, \frac{k+1}{2k}\in B \]
+\underline{Def.} We say that $f$ is integrable on $Q\Big(\iint_Q$ exists $\Big)$ \\
+if we can find a number $c\in\BR$ s.t. \\
+for any $\varepsilon>0$, there are functions $s\in S$, $t\in T$ s.t. \\
+\[ c-\varepsilon\leq\iint_Qs\leq\iint_Qt\leq c+\varepsilon \]
+$A$ and $B$ meet at $c$ \\
+\subsection*{Theorem}
+$\iint_{Q}f$ exists $\Leftrightarrow$ for each $\varepsilon>0$, we can find \\
+\[ s\in S, t\in T\text{ s.t. } 0\leq\iint_Qt-\iint_Qs\leq\varepsilon \]
+\begin{proof}
+  If $\iint_Qf=c$, then for $\varepsilon>0$, we can find $s\in S$, $t\in T$ \\
+  \[ c-\frac{\varepsilon}{2}\leq\iint_Qs\leq\iint_Qt\leq c+\frac{\varepsilon}{2} \]
+  \[ \Rightarrow\iint_Qt-\iint_Qs\leq\varepsilon \]
+\end{proof}
+\subsection*{Example 1}
+\[
+  \iint_0^1f(x)dx \text{ exists or not if } f(x)=
+  \begin{cases}
+    0\quad x\in Q \\
+    1\quad x\notin Q
+  \end{cases}
+\]
+\circled{1} For a step function $s\in S$, that is \\
+\[ s\leq f\Rightarrow\fbox{$s\leq 0$} \]
+\[ \int_0^1s(x)\,dx\leq 0\text{ for all }s\in S \]
+\circled{2} For $t\in T$, that is, \\
+\[ t\geq f\Rightarrow\fbox{$t\geq 1$} \]
+\[ \int_0^1t(x)\,dx\geq 1\text{ for all } t\in T \]
+\[ \Rightarrow \int_0^1f(x)\,dx \text{ DNE } \]
+\subsection*{Example 2}
+\[
+  g(x) =
+  \begin{cases}
+    1\quad x=0 \\
+    0\quad x\in(0,1]
+  \end{cases}
+\]
+\underline{Claim} \\
+\[ \int_0^1\text{ exists, equals }0 \]
+\begin{proof}
+  Zero function is in $S$, of course $\int_0^10\,dx=0$ \\
+  \[
+    \text{for any }h>0\text{, set }t(x)=
+    \begin{cases}
+      1\quad 0\leq x\leq h \\
+      0\quad h<x\leq 1
+    \end{cases}
+  \]
+  Then $t\in T$, and $\int_0^1t(x)dx=h$ \\
+  Let $h\rightarrow 0^+$ to conclude \\
+\end{proof}
+\subsection*{Theorem: Double integrals and repeated integrals}
+Let $Q=[a,b]\times[c,d]$, $f:Q\rightarrow\BR$ be integrable on $Q$ \\
+Assume for each $x\in[a,b]$, $\int_c^df(x,y)\,dy$ exists \\
+\[ \text{Then, }\iint f=\iint_Qf(x,y)\,dx\,dy=\int_a^b\Big(\int_c^df(x,y)\,dy\Big)\,dx \]
+\subsection*{Example 3}
+\[ \iint_{[0,1]^2}xy\,dx\,dy=\int_0^1\Big(\int_0^1xy\,dx\Big)\,dy \]
+\[ = \int_0^1y\Big(\int_0^1x\,dx\Big)\,dy=\frac{1}{2}\cdot\frac{1}{2}=\frac{1}{4} \]
+\end{document}
