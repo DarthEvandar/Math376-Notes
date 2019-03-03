@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 16}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\subsection*{Last time}
+  \[ \iint_Qf(x,y)\,dx\,dy=\int_a^b\Big(\int_c^df(x,y)\,dy\Big)\,dx \]
+  \[ \iint_Qf(x,y)\,dx\,dy=\int_c^d\Big(\int_a^bf(x,y)\,dx\Big)\,dy \]
+\subsection*{Proof}
+  (double integral = repeated integral) \\
+  \begin{proof}
+    Firstly, if we have $g$ is a step function, then surely
+    \[ \iint_Qg(x,y)\,dx\,dy=\int_a^b\Big(\int_c^dg(x,y)\,dy\Big)\,dx \]
+    By induxtion, we actually reduce this to just that $g(x)=\alpha$ on $Q$ \\
+    \[ \iint_Q\alpha\,dx\,dy = \alpha(b-a)(d-c) \]
+    \[ \int_a^b\Big(\int_c^d\alpha\,dy\Big)\,dx=\int_a^b\alpha(d-c)\,dx=\alpha(d-c)(b-a) \]
+    Secondly, for any $\varepsilon>0$, we can find $s\in S,t\in T:$ \\
+    \[ \alpha-\varepsilon\leq\iint_Qs\leq\iint_Qf=\alpha\leq\iint_Qt\leq\alpha+\varepsilon \]
+    Of course $s(x,y)\leq f(x,y)\leq t(x,y)$ \\
+    $Q=[a,b]\times[c,d]\subset\BR^2,f:Q\rightarrow\BR$ is bounded \\
+    \[ \Rightarrow \int_c^ds(x,y)\,dy\leq\int_c^df(x,y)\,dy\leq\int_c^dt(x,y)\,dy \]
+    \begin{align*}
+      \Rightarrow \int_a^b\Big(\int_c^ds(x,y)\,dy\Big)\,dx & \leq\int_a^b\Big(\int_c^df(x,y)\,dy\Big)\,dx \\
+      & \leq \int_a^b\Big(\int_c^dt(x,y)\,dy\Big)\,dx \\
+    \end{align*}
+    \[ \alpha-\varepsilon\leq\iint_Qs\leq\int_a^b\Big(\int_c^df(x,y)\,dy\Big)\,dx\leq\iint_Qt\leq\alpha+\varepsilon \]
+    \[ \text{Let }\varepsilon\rightarrow 0,\int_a^b\Big(\int_c^df(x,y)\,dy\Big)\,dx=\alpha \]
+  \end{proof}
+\subsection*{Theorem}
+  Let $f:Q\rightarrow\BR$ be continuous. Then all integrals earlier \\
+  exist and \\
+  \[ \iint_Qf=\int_a^b\bigg(\int_c^df(x,y)\,dy\bigg)\,dx=\int_c^d\bigg(\int_a^bf(x,y)\,dx\bigg)\,dy \]
+  \underline{To be proved later} \\
+  \[ \text{geometric interpretation of }\iint_Qf=\int_a^b\bigg(\int_c^df(x,y)\,dy\bigg)\,dx \]
+  Let's assume $f$ is continuous and $f\geq 0$ \\
+  \[ \iint_Qf\,dx\,dy=V=\text{ volume of }S \]
+  Each slide has area \\
+  \begin{align*}
+    & = \int_c^df(x,y)\,dy \\
+    V & = \int_a^b\bigg(\text{Area}\bigg)\,dx \\
+    & = \int_a^b\bigg(\int_c^df(x,y)\,dy\bigg)\,dx
+  \end{align*}
+\subsection*{Two examples}
+  $Q=[a,b]\times[c,d]\subset\BR^2,f:Q\rightarrow\BR$ is bounded \\
+  \circled{1} $f(x,y)=g(x)h(y)$, where \\
+  \[ g:[a,b]\rightarrow\BR,h:[c,d]\rightarrow\BR\text{ continuous} \]
+  \begin{align*}
+    \text{Then }\iint_Qf & = \int_a^b\bigg(\int_c^dg(x)h(y)\,dy\bigg)\,dx \\
+    & = \int_a^bg(x)\bigg(\int_c^dh(y)\,dy\bigg)\,dx \\
+    & = \bigg[\int_a^bg(x)\,dx\bigg]\cdot\bigg[\int_c^dh(y)\,dy\bigg] \\
+  \end{align*}
+  \[ Q=[0,1]\times[0,2] \]
+  \[ \iint_Qxe^y\,dx\,dy=\bigg[\int_0^1x\,dx\bigg]\cdot\bigg[\int_0^2e^y\,dy\bigg]=\frac{e^2-1}{2} \]
+  \circled{2} $f(x,y)=\sin(x+y)$ in $Q=[0,\frac{\pi}{2}]^2$ \\
+  \[ \iint_Q\sin(x+y)\,dx\,dy=\int_0^{\frac{\pi}{2}}\bigg(\int_0^{\frac{\pi}{2}}\sin(x+y)\,dx\bigg)\,dy \]
+  \[ =\int_0^{\frac{\pi}{2}}\bigg(-\cos(x+y\bigg]_{x=0}^{x=\frac{\pi}{2}}\bigg)\,dy=\int_0^{\frac{\pi}{2}}\bigg(-\cos(\frac{\pi}{2}+y)+\cos(y)\bigg)\,dy \]
+  \[ =\bigg(-\sin(\frac{\pi}{2}+y)+\sin(y)\bigg)\bigg]_{y=0}^{y=\frac{\pi}{2}}=1+1=2 \]
+\subsection*{Sketch of proof of theorem}
+  \begin{proof}
+    \underline{Last theorem in Chapter 9} \\
+    For a fixed $\varepsilon>0$, we can find \\
+    a partition $P_1 \times P_2$ of $Q$ \\
+    such that in each subrectangle $Q_ij$: \\
+    \fbox{$0\leq\max\limits_{Q_{ij}}f-\min\limits_{Q_{ij}}f\leq\varepsilon$}
+    Define $s\in S$ as following \\
+    $s(x,y)=\min\limits_{Q_{ij}}f$ for $(x,y)\in Q_{ij}$ \\
+    for all $1\leq i\leq m$, $1\leq j\leq k$ \\
+    Clearly $s\leq f$ \\
+    Define $t\in T$: \\
+    $t(x,y)=\max\limits_{Q_{ij}}f$ for $(x,y)\in Q_{ij}$ \\
+    \fbox{$s\leq f\leq t$} \\
+    Since $0\leq\max\limits_{Q_{ij}}f-\min\limits_{Q_{ij}}f\leq\varepsilon\Rightarrow 0\leq t(x,y)-s(x,y)\leq \varepsilon$ in $Q_{ij}$ \\
+    \[ \Rightarrow 0\leq t(x,y)-s(x,y)\leq\varepsilon\text{ for }(x,y)\in Q \]
+    \[ \Rightarrow 0\leq\iint_Qt-\iint_Qs\leq\iint_Q\varepsilon=\varepsilon(b-a)(d-c)\rightarrow 0\text{ as }\varepsilon\rightarrow 0 \]
+  \end{proof}
+\end{document}
