@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+    \pgfplotsset{width=10cm,compat=1.9}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 18}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Applications}
+  Let $S\subset\BR^2$ represents a shape of a thin plate \\
+  For $(x,y)\in S$ let $f(x,y)$ be the mass density at $(x,y)$ of $S$, \\
+  we assume $f\geq 0$ \\
+  \circled{1} Total mass of $S$: \\
+  \[ m(S)=\iint_Sf(x,y)\,dx\,dy \]
+  \circled{2} Average mass density: \\
+  \[ \frac{m(s)}{|S|}=\frac{\iint_Sf(x,y)\,dx\,dy}{\iint_S1\,dx\,dy} \]
+  Sometimes, when we don't say anything about mass density, then we really \\
+  mean that mass density is constant, that is, $f(x,y)\equiv c>0$ \\
+  \circled{3} Center of mass: $(\overline{x},\overline{y})\in\BR^2$ such that \\
+  \[
+    \begin{cases}
+      \overline{x}=\frac{\iint_Sx\,f(x,y)\,dx\,dy}{m(s)}=\frac{\iint_Sx\,f(x,y)\,dx\,dy}{\iint_Sf(x,y)\,dx\,dy} \\
+      \overline{y}=\frac{\iint_Sy\,f(x,y)\,dx\,dy}{m(s)}=\dots
+    \end{cases}
+  \]
+  Sometimes, centroid of $S$ is $(\overline{x},\overline{y})$ \\
+  \circled{4} Moment of inertia: \\
+  \begin{align*}
+    I_L & = \iint_Sd(x,y)^2f(x,y)\,dx\,dy \\
+    & = \iint_S\delta(x,y)^2f(x,y)\,dx\,dy
+  \end{align*}
+  If we rotate $S$ around the x-axis, \\
+  \[ I_x=\iint_Sy^2f(x,y)\,dx\,dy \]
+  Similarly, \\
+  \[ I_y=\iint_Sx^2f(x,y)\,dx\,dy \]
+  \subsection*{Example}
+    Find the centroid of $S$ which is determined by $y=0$, $y=\sin(x)$, $x=0$,$x=\pi$ \\
+    \underline{Solution}: Let's say mass density is constant $c>0$ \\
+    Note $S$ is symmetric about $x=\frac{\pi}{2}$, \\
+    we actually get right away that $\overline{x}=\frac{\pi}{2}$ \\
+    Let's check: \\
+    \begin{align*}
+      \overline{x} & =\frac{\iint_Sx\cdot c\,dx\,dy}{\iint_Sc\,dx\,dy} \\
+      & = \frac{\iint_Sx\,dx\,dy}{\iint_S1\,dx\,dy} \\
+      & = \frac{\int_0^{\pi}\bigg(\int_0^{\sin(x)}x\,dy\bigg)\,dx}{\int_0^{\pi}\bigg(\int_0^{\sin(x)}1\,dy\bigg)\,dx} \\
+      & = \frac{\int_0^{\pi}x\sin(x)\,dx}{\int_0^{\pi}\sin(x)\,dx} \\
+      & = \frac{1}{2}\int_0^{\pi}x\sin(x)\,dx \\
+      & = \frac{1}{2}\bigg(uv\biggr\rvert_0^{\pi}-\int_0^{\pi}v\,du\bigg) \\
+      & = \frac{1}{2}\pi+\int_0^{\pi}\cos(x)\,dx \\
+      & = \frac{1}{2}\pi
+    \end{align*}
+    \[ \text{For }
+      \begin{cases}
+        u=x \\
+        dv=\sin(x)\,dx
+      \end{cases}
+      \Rightarrow
+      \begin{cases}
+        du=dx \\
+        v=-\cos(x)
+      \end{cases}
+    \]
+    \begin{align*}
+      \overline{y} & = \frac{\iint_Sy\,c\,dx\,dy}{\iint_Sc\,dx\,dy} \\
+      & = \frac{\iint_Sy\,dx\,dy}{\iint_S1\,dx\,dy = 2} \\
+      & = \frac{1}{2}\int_0^{\pi}\bigg(\int_0^{\sin(x)}y\,dy\bigg)\,dx \\
+      & = \frac{1}{2}\int_0^{\pi}\frac{\sin^2(x)}{2}\,dx \\
+      & = \frac{1}{8}\int_0^{\pi}(1-\cos(2x))\,dx \\
+      & = \frac{\pi}{8}
+    \end{align*}
+\section*{Greene's Theorem}
+  \subsection*{Jordan Curve}
+    \underline{Jordan Curve}: closed, piecewise $C^1$, not self intersected curve in $\BR^2$ \\
+  \subsection*{Greene's Theorem}
+    \underline{Greene's Theorem}: \\
+    $P,Q:\overline{S}\rightarrow\BR$ are $C^1$. \\
+    Then, \\
+    \[ \oint_CP\,dx+Q\,dy = \iint_S\big(\frac{dQ}{dx}-\frac{dP}{dy}\big)\,dx\,dy \]
+\end{document}
