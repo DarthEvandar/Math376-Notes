@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+    \pgfplotsset{width=10cm,compat=1.9}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 19}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Greene's Theorem}
+\subsection*{Setting}
+    Let $C$ be a piecewise $C^1$ closed Jordan Curve, that is, \\
+    $C$ is not self-intersecting.  $C$ encloses a region $S\subset\BR^2$ \\
+\subsection*{Theorem} [Greene's Theorem] Let $P,Q:\rightarrow\BR$ be \\
+    $C^1$ functions(real valued). Then, \\
+    \[ \text{(*) }\oint_CP\,dx+Q\,dy=\iint_S\bigg(\frac{dQ}{dx}-\frac{dP}{dy}\bigg)\,dx\,dy \]
+\subsection*{Observations}
+    \circled{1} In the theorem, there are 2 functions $P$ and $Q$ that are not related \\
+    $\Rightarrow$ To prove (*), it's equivalent to show 2 simpler claims. \\
+    \[
+        \begin{cases}
+            (**)\,\oint_CP\,dx=\iint_S-\frac{dP}{dy}\,dx\,dy \\
+            (***)\,\oint_CQ\,dy=\iint_S\frac{dQ}{dx}\,dx\,dy \\
+        \end{cases}
+    \]
+    (or, you can let $P\equiv 0, Q\equiv 0$ in (*)) \\
+    (**) and (***) are more or less the same \\
+    \circled{2} Let's prove (**). $\oint_CP\,dx=\iint_S-\frac{dP}{dy}\,dx\,dy$ \\
+    \underline{Key pt.} Divide $S$ into simple domains (in $x$), and we'll show \\
+    that for each simple domain $S_k$: \\
+    \[ \oint_{C_k}P\,dx=\iint_{S_k}-\frac{dP}{dy}\,dx\,dy \]
+    ($C_k$ is the corresponding boundary of $S_k$). \\
+    Afterwards, adding all these together in $k$ to get:
+\subsection*{Proof of (**) for simple domains (in $x$)}
+    \begin{proof}
+        \[ S=\big\{(x,y): a\leq x\leq b, \phii(x)\leq y\leq Psi(x)\big\}\]
+        We now compute easily: \\
+        \[ \iint_S-\frac{dP}{dy}\,dx\,dy=\int_a^b\bigg(\int_{\phii(x)}^{\Psi(x)}-\frac{dP}{dy}\,dy\bigg)\,dx\]
+        \[ = \int_a^b(P(x,\phii(x))-P(x,\Psi(x)))\,dx\]
+        Let's compute $\oint_CP\,dx$: \\
+        $C$ is broken into 4 pieces as following. \\
+        \circled{I} $\alpha(x)=(x,\phii(x)): a\leq x\leq b, dx=dx$ \\
+        \[ \int_{\alpha}=\int_a^bP(x,\phii(x))\,dx\]
+        \circled{II} $\beta(s)=(b,s):\phii(x)\leq s\leq\Phi(x), dx=0$ as it's constant \\
+        \[ \int_{\beta}P\,dx=0 \]
+        Similarly, $\int_{\delta}P\,dx=0.$ \\
+        \circled{III} $\gamma(x)=(x,\Psi(x)): a\leq x\leq b, dx=x$ \\
+        \[ \int_{\gamma}P\,dx=\int_a^bP(x,\Psi(x))\,dx=-\int_a^bP(x,\Psi(x))\,dx \]
+        Sum all up, \\
+        \[ \oint_CP\,dx=\int_a^b\big(P(x,\phii(x))-P(x,\Psi(x))\big)\,dx \]
+    \end{proof}
+\subsection*{Remark}
+    To prove the other identity: \\
+    \[ \oint_CQ\,dy=\iint_S\frac{dQ}{dx}\,dx\,dy\text{, we simply break $S$ into simple domains in $y$} \]
+\subsection*{Example}
+    Compute work done by force field \\
+    \[ f(x,y)=(y+3x, 2y-x) \]
+    in a moving particle counter-clockwise once around the ellipse \\
+    \[ 4x^2+y^2=4 \]
+    \underline{Earlier}: Parameterize $C$: \\
+    \[ \alpha(s)=(\cos(s),2\sin(s)), 0\leq s\leq 2\pi \]
+    \[\text{Work done} = \int f\cdot d\alpha=\int_0^{2\pi}f(\alpha(s))\cdot\alpha\prm(s)\,ds \]
+    \[ =\int_0^{2\pi}(2\sin(s)+3\cos(s),4\sin(s)-\cos(s))\cdot(-\sin(s),2\cos(s))\,ds \]
+    \[ = \int_0^{2\pi}(-2\sin^2(s)-3\cos(s)\sin(s)+8\sin(s)\cos(s)-2\cos^2(s))\,ds \]
+    \[ = \int_0^{2\pi}(-2+5\sin(s)\cos(s))\,ds =\dots \]
+    \underline{The other way}: $P(x,y)=y+3x,Q(x,y)=2y-x$ \\
+    Work done $=\oint_CP\,dx+Q\,dy$ \\
+    \[ = \iint_S(\frac{dQ}{dx}-\frac{dP}{dy}) \]
+    \[ = \iint_S(-2)\,dx\,dy \]
+\end{document}
