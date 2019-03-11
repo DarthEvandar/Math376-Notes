@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+    \pgfplotsset{width=10cm,compat=1.9}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 20}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Greene's Theorem Pt. 2}
+    \subsection*{Ex. 1}
+        \[ f(x,y)=(y+3x,2y-x) \]
+        Work done by this force field in a moving particle around $4x^2+y^2=4$ \\
+        \underline{Sln. by Greene's Theorem}: \\
+        Set $P(x,y)=y+3x$, $Q(x,y)=2y-x$ \\
+        \[ \oint_Cf\cdot\,dx=\oint_CP\,dx+Q\,dy \]
+        \[ = \iint_S\big(\frac{dQ}{dx}-\frac{dP}{dy}\big)\,dx\,dy \]
+        \[ = \iint_S(-2)\,dx\,dy \]
+        \[ = -2\cdot\text{Area($S$)} \]
+        \[ \text{Area($S$)}=\iint_S 1\,dx\,dy=\int_{-1}^1\bigg(\int_{-\sqrt{4-4x^2}}^{\sqrt{4-4x^2}}1\,dy\bigg)\,dx \]
+        \[ = \int_{-1}^12\sqrt{4-4x^2}\,dx = \int_{-1}^1 4\sqrt{1-x^2}\,dx=2\int_{-1}^12\sqrt{1-x^2}\,dx \]
+        \[ 2\cdot\text{area unit disc}=2\cdot(\pi\cdot 1^2)=2\pi \]
+        \underline{Another way} \\
+        \[ 4\int_{-1}^1\sqrt{1-x^2}\,dx=8\int_0^1\sqrt{1-x^2}\,dx \]
+        \[ x=\sin(\theta), 0\leq\theta\leq\frac{\pi}{2} \]
+        \[ \sqrt{1-x^2}=\cos(\theta) \]
+        \[ = 8\int_0^{\frac{\pi}{2}}\cos(\theta)\cdot\cos(\theta)\,d\theta=8\int_0^{\frac{\pi}{2}}\cos^2(\theta)\,d\theta=8\int_0^{\frac{\pi}{2}}\frac{1+\cos(2\theta)}{2}\,d\theta = 2\pi \]
+    \subsection*{Ex. 2}
+        Let $C$ be the boundary of $[0,1]^2\subset\BR^2$ \\
+        Let $f(x,y)=(5-xy-y^2,x^2-2xy)$ \\
+        Compute the work done by a particle moving around $C$ once counter-clockwise \\
+        \underline{Work done} = $\oint_Cf\cdot d\alpha$ \\
+        Here, $S$ is a square, and hence, computing integrals in $S$ is much simpler. \\
+        \underline{Sln. By Greene's Theorem}: \\
+        \[ P(x,y)=5-xy-y^2, Q(x,y)=x^2-2xy \]
+        \[ \iint_S(2x-2y-(-x-2y))\,dx\,dy = \iint_S3x\,dx\,dy \]
+        \[ = \bigg(\int_0^1 3x\,dx\bigg)\bigg(\int_0^1 1\,dy\bigg)=\fbox{$\frac{3}{2}$} \]
+    \subsection*{Remark (Interpretation of Green's thm.)}
+        Given $S\subset\BR^2$, and $C$ is its boundary \\
+        To measure total change of a quantity inside $S$ = To measure total change on $C$ \\
+        Total change inside $S$ = $\iint_S$(rate of change)$\,dx\,dy$ \\
+        = Total change on $C$ = $\oint_CP\,dx+Q\,dy$ \\
+    \subsection*{Necessary and sufficient conditions for a vector field to be a gradient vector field in 2D}
+        \underline{Recall}: $f(x,y)=(P(x,y),Q(x,y)):S\rightarrow\BR^2$ is a given vector field \\
+        \underline{Recall}: $f$ is a gradient vector field if: \\
+        \[ f(x,y)=\nabla\Psi(x,y)=(\Psi_x,\Psi_y) \]
+        In this case, $\oint f\cdot\alpha=0$ \\
+        \[ \int f\cdot d\beta = \Psi(\beta(b))-\Psi(\beta(a)) \]
+        \underline{Claim 1}: If $f$ is a gradient vector field \\
+        \[ \Rightarrow \frac{dP}{dy}={dQ}{dx} \]
+        \begin{proof}
+            \[f=(P,Q)=(\Psi_x,\Psi_y) \]
+            \[ 
+                \Rightarrow
+                \begin{cases}
+                    P=\Psi_x \\
+                    Q=\Psi_y
+                \end{cases}
+                \Rightarrow P_y=Q_x=\Psi_{xy}
+            \]
+        \end{proof}
+        \underline{Claim 2}: In general, $\frac{dP}{dy}=\frac{dQ}{dx}\not\Rightarrow$ $f$ is a gradient vector field \\
+        \[
+            \text{\underline{Earlier}}:
+            \begin{cases}
+                \frac{dP}{dy}=\frac{dQ}{dx} \\
+                \text{$S$ is convex}
+            \end{cases} 
+            \Rightarrow f \text{ is a gradient vector field} 
+        \]
+        Let's now recall Green's thm. \\
+        For any closed Jordan curve $\alpha$ in $S$ \\
+        \[ \oint f\,d\alpha = \oint_\alpha P\,dx+Q\,dy = \iint_A(\frac{dQ}{dx}-\frac{dP}{dy}\,dx\,dy \]
+        Clearly, if $\frac{dQ}{dx}=\frac{dP}{dy}$, then we always have $\oint f\cdot d\alpha=0$ \\
+    \subsection*{Theorem}
+        Assume $f(x,y)=(P(x,y),Q(x,y))$ with $P,Q$ are $C^1$ and $\frac{dQ}{dx}=\frac{dP}{dy}$ always. \\
+        Assume the boundary of $S$ is $C$ is a closed, piecewise $C^1$ Jordan curve, and $C$ encloses $S$. \\
+        Then $f$ is a gradient vector field. \\
+\end{document}
