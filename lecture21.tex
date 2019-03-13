@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+    \pgfplotsset{width=10cm,compat=1.9}
+\usepackage{tipa}
+\usepackage{hyperref}
+\usepackage{mathtools}
+    \hypersetup{colorlinks=true,citecolor=blue,urlcolor =black,linkbordercolor={1 0 0}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\prm}{^\prime}
+\newcommand{\doubleprime}{^{\prime\prime}}
+\newcommand{\phii}{\varphi}
+\title{Lecture 20}
+\begin{document}
+\maketitle
+\vspace*{-0.25in}
+\begin{center}
+	Anders Sundheim \\
+	\href{mailto:asundheim@wisc.edu}{{\tt asundheim@wisc.edu}}
+\end{center}
+\section*{Change of variables for double integrals}
+    \subsection*{Example}
+        \underline{Recall} one example for single variable integral \\
+        \[ 
+            \int_0^{\frac{\pi}{2}}\sin^3\theta d\theta=\int_0^{\frac{\pi}{2}}\sin^2\theta\sin\theta d\theta\rightarrow\text{change of variable } \begin{cases}
+                u=\cos\theta\quad\theta:0\rightarrow\frac{\pi}{2} \\
+                du=u\prm\,d\theta=-\sin\theta\,d\theta\quad\theta:1\rightarrow 0
+            \end{cases}
+        \]
+        \[ =\int_1^0(1-u^2)(-du)=\int_0^1(1-u^2)\,du=u-\frac{u^3}{3}\bigg]_0^1=\fbox{$\frac{2}{3}$} \]
+        Given variables $(x,y)\in S$ \\
+        \[ \iint_Sf(x,y)\,dx\,dy \]
+        \[ (u,v)\mapsto(x,y) \]
+        New variables $(u,v)\in T$ \\
+        \[ 
+            \text{Here, }
+            \begin{cases}
+                x=\overline{X}(u,v) \\
+                y=\overline{Y}(u,v)
+            \end{cases}
+        \]
+    \subsection*{Theorem}
+        Change of variables: \\
+        Assume $(\overline{X},\overline{Y}):T\rightarrow S$ \\
+        \[ (u,v)\mapsto(\overline{X}(u,v),\overline{Y}(u,v)=(x,y) \]
+        \[
+            \text{and }
+            \begin{cases}
+                \text{the map is one-to-one} \\
+                \frac{d\overline{X}}{du},\frac{d\overline{X}}{dv},\frac{d\overline{Y}}{du},\frac{d\overline{Y}}{dv}\text{ are continuous} \\
+                \text{Jacobian determinant}=\text{det}J(u,v)=\begin{vmatrix*}
+                    \frac{d\overline{X}}{du} & \frac{d\overline{Y}}{du} \\
+                    \frac{d\overline{X}}{dv} & \frac{d\overline{Y}}{dv}
+                \end{vmatrix*}
+                \neq 0 \text{ always}
+            \end{cases}
+        \]
+        \[ \text{Then, } \iint_Sf(x,y)\,dx\,dy=\iint_Tf(\overline{X}(u,v),\overline{Y}(u,v))|J(u,v)|\,du\,dv \]
+    \subsection*{Theorem}
+        Let $S\subset\BR^2$ be an open set such that it's boundary, $c$, is a piecewise $C^1$ Jordan curve, \\
+        and $c$ encloses exactly $S$. Let $P,Q:S\rightarrow\BR$ be $C^1$ real-valued \\
+        functions such that $\frac{dP}{dy}(x,y)=\frac{dQ}{dx}(x,y)$ for all $(x,y)\in S$. \\
+        Then $f(x,y)=(P(x,y),Q(x,y))$ is a gradient vector field(that is, $f=\nabla\Psi$, for some potential function $\Psi:S\rightarrow\BR$) \\
+        \underline{Rmk.}: \circled{1} $c$ encloses exactly $S$ is very important \\
+        \circled{2} Key point again: if $f=\nabla\Psi$, then $\int f\cdot d\alpha=\Psi(\alpha(b))-\Psi(\alpha(a))$ \\
+        \begin{proof}
+            Fix $z\in S$ \\
+            For any $x\in S$, we can connect $z$ to $x$ by line segments parallel to the axes \\
+            Take any such path $\alpha$, connects $z\rightarrow x:(\alpha(a)=z,\alpha(b)=x)$ \\
+            Define $\Psi(x)=\int f\cdot d\alpha=\int_{\alpha}P\,dx+Q\,dy$ \\
+            \underline{Issues}: \\
+            \circled{1} Is $\phii$ well-defined?$\Rightarrow$ we need to show that $\phii(x)$ does not depend on path $\alpha$ \\
+            Call $\gamma$ boundary of $A$: $\oint_{\gamma}f\cdot d\alpha=0\Rightarrow\int f\cdot d\alpha = \int f\,dB$ \\
+            $\Rightarrow \phii$ is well-defined \\
+            \circled{2} We need to check $\nabla\phii=(P,Q)\rightarrow$ we have checked this before. \\
+        \end{proof}
+\end{document}
